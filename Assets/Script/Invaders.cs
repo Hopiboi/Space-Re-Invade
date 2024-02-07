@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Invaders : MonoBehaviour
 {
+
+    [Header("Grid")]
     [SerializeField] private Invader[] prefabs;
     [SerializeField] private int rows = 5;
     [SerializeField] private int cols = 11;
 
 
-
+    [Header("Invaders movement")]
     [SerializeField] private Vector3 direction = Vector2.right;
     [SerializeField] private float speed = .5f;
 
 
-
     void Awake()
     {
+        //creating rows
         for (int row = 0; row < this.rows; row++)
         {
             //Center Variables, setting up to the center
@@ -25,10 +27,10 @@ public class Invaders : MonoBehaviour
             Vector2 centering = new Vector2 (-width / 2 , -height / 2);
             Vector3 rowPosition = new Vector3(centering.x, centering.y + (row * .6f), 0f); // spacing for the rows
 
-            // columns
+            // creating columns inside in the rows
             for (int col = 0; col < this.cols; col++)
             {
-                //instantiate in the rows
+                //instantiate in the columns
                 Invader invader = Instantiate(this.prefabs[row], this.transform);
 
                 // to create columns
@@ -43,6 +45,7 @@ public class Invaders : MonoBehaviour
     {
         this.transform.position += direction * this.speed * Time.deltaTime;
 
+        //edge of the camera and make them functional
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
 

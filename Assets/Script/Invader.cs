@@ -12,10 +12,7 @@ public class Invader : MonoBehaviour
     [SerializeField] private float animationTime = 1f;
     [SerializeField] private int animationFrame;
 
-
-
     //animation
-
     void Awake()
     {
         spr = GetComponent<SpriteRenderer>();
