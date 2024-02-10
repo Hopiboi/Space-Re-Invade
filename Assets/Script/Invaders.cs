@@ -13,8 +13,12 @@ public class Invaders : MonoBehaviour
 
     [Header("Invaders movement")]
     [SerializeField] private Vector3 direction = Vector2.right;
-    [SerializeField] private float speed = .5f;
+    [SerializeField] private AnimationCurve speed;
 
+    //kill invader
+    public int amountKilled { get; private set; } //how many killed
+    public int totalInvaders => this.rows * this.cols; // how many invader are
+    public float percentKilled => (float)this.amountKilled / (float)this.totalInvaders; // percentage
 
     void Awake()
     {
@@ -33,6 +37,8 @@ public class Invaders : MonoBehaviour
                 //instantiate in the columns
                 Invader invader = Instantiate(this.prefabs[row], this.transform);
 
+                invader.killed += InvaderKilled;
+
                 // to create columns
                 Vector3 position = rowPosition;
                 position.x += col * .6f; // spacing columns
@@ -43,7 +49,7 @@ public class Invaders : MonoBehaviour
 
     void Update()
     {
-        this.transform.position += direction * this.speed * Time.deltaTime;
+        this.transform.position += direction * this.speed.Evaluate(amountKilled) * Time.deltaTime;
 
         //edge of the camera and make them functional
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
@@ -68,6 +74,11 @@ public class Invaders : MonoBehaviour
                 Debug.Log("going right");
             }
         }
+    }
+
+    private void InvaderKilled()
+    {
+        this.amountKilled++;
     }
 
     //hitting edge, going down

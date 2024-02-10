@@ -640,7 +640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1082356185
 Transform:
   m_ObjectHideFlags: 0
@@ -677,7 +677,30 @@ MonoBehaviour:
   rows: 5
   cols: 11
   direction: {x: 1, y: 0, z: 0}
-  speed: 1
+  speed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.15
+      inSlope: -0.040102657
+      outSlope: 0.23367147
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.054855276
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.817353
+      outSlope: 2
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.031279147
+      outWeight: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1127249593
 GameObject:
   m_ObjectHideFlags: 0

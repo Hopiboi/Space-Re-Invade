@@ -12,6 +12,8 @@ public class Invader : MonoBehaviour
     [SerializeField] private float animationTime = 1f;
     [SerializeField] private int animationFrame;
 
+    public System.Action killed;
+
     //animation
     void Awake()
     {
@@ -43,6 +45,7 @@ public class Invader : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
+            this.killed.Invoke();
             this.gameObject.SetActive(false);
         }
     }
