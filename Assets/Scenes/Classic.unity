@@ -682,25 +682,27 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.15
-      inSlope: -0.040102657
-      outSlope: 0.23367147
-      tangentMode: 1
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.054855276
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2.817353
-      outSlope: 2
-      tangentMode: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.031279147
+      inWeight: 0
       outWeight: 0
-    m_PreInfinity: 1
+    m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  missileAttackTime: 2
+  missilePrefab: {fileID: 3781002102409019100, guid: b9aec87b5869db941bfa687c8c276203, type: 3}
 --- !u!1 &1127249593
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +919,7 @@ GameObject:
   - component: {fileID: 1723481255}
   - component: {fileID: 1723481256}
   - component: {fileID: 1723481257}
+  - component: {fileID: 1723481258}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1032,3 +1035,24 @@ MonoBehaviour:
   laserPrefab: {fileID: -7051612151010534189, guid: 0f94d1b4d5ecfd648b43384a4eaf15e8, type: 3}
   speed: 3.5
   isLaserActive: 0
+--- !u!50 &1723481258
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723481253}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

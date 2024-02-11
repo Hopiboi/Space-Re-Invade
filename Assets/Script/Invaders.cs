@@ -14,9 +14,12 @@ public class Invaders : MonoBehaviour
     [Header("Invaders movement")]
     [SerializeField] private Vector3 direction = Vector2.right;
     [SerializeField] private AnimationCurve speed;
+    [SerializeField] private float missileAttackTime = 1f;
+    [SerializeField] public Projectile missilePrefab;
 
     //kill invader
     public int amountKilled { get; private set; } //how many killed
+    public int amountAlive => this.totalInvaders - this.amountKilled; // how many are still alive
     public int totalInvaders => this.rows * this.cols; // how many invader are
     public float percentKilled => (float)this.amountKilled / (float)this.totalInvaders; // percentage
 
@@ -47,31 +50,34 @@ public class Invaders : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        InvokeRepeating(nameof(Missile),this.missileAttackTime,this.missileAttackTime);
+    }
+
     void Update()
     {
-        this.transform.position += direction * this.speed.Evaluate(amountKilled) * Time.deltaTime;
+        this.transform.position += direction * this.speed.Evaluate(percentKilled) * Time.deltaTime;
 
         //edge of the camera and make them functional
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
 
-        foreach (Transform invader in this.transform)
+        foreach (Transform invader in this.transform) // all childrens of this attached in this script will become invader name
         {
             if (!invader.gameObject.activeInHierarchy)
             {
                 continue;
             }
 
-            if (direction == Vector3.right && invader.position.x >= (rightEdge.x - .5f))
+            if (direction == Vector3.right && invader.position.x >= (rightEdge.x - .5f)) // going left
             {
                 AdvanceRow();
-                Debug.Log("going left");
             }
 
-            else if (direction == Vector3.left && invader.position.x <= (leftEdge.x + .5f))
+            else if (direction == Vector3.left && invader.position.x <= (leftEdge.x + .5f)) // going right
             {
                 AdvanceRow();
-                Debug.Log("going right");
             }
         }
     }
@@ -89,7 +95,22 @@ public class Invaders : MonoBehaviour
         Vector3 position = this.transform.position;
         position.y -= .10f;
         this.transform.position = position;
+    }
 
-        Debug.Log("activated");
+    private void Missile()
+    {
+        foreach (Transform invader in this.transform)
+        {
+            if (!invader.gameObject.activeInHierarchy)
+            {
+                continue;
+            }
+
+            if (Random.value < (1f / (float) this.amountAlive))
+            {
+                Instantiate(this.missilePrefab, this.transform.position, Quaternion.identity);
+                break;
+            }
+        }
     }
 }
