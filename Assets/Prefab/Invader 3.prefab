@@ -20,6 +20,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b79c6bb3c22209d45b2377297dff24dc, type: 3}
     - target: {fileID: 5439599464277633988, guid: 9b6acf149eba83a40a225b8dad39eca9, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439599464277633988, guid: 9b6acf149eba83a40a225b8dad39eca9, type: 3}
+      propertyPath: m_Size.y
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439599464277633988, guid: 9b6acf149eba83a40a225b8dad39eca9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439599464277633988, guid: 9b6acf149eba83a40a225b8dad39eca9, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
       objectReference: {fileID: 0}

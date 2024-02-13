@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Invaders : MonoBehaviour
 {
@@ -52,12 +53,12 @@ public class Invaders : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating(nameof(Missile),this.missileAttackTime,this.missileAttackTime);
+        InvokeRepeating(nameof(MissileAttack),this.missileAttackTime,this.missileAttackTime);
     }
 
     void Update()
     {
-        this.transform.position += direction * this.speed.Evaluate(percentKilled) * Time.deltaTime;
+        this.transform.position += direction * this.speed.Evaluate(this.percentKilled) * Time.deltaTime;
 
         //edge of the camera and make them functional
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
@@ -85,6 +86,11 @@ public class Invaders : MonoBehaviour
     private void InvaderKilled()
     {
         this.amountKilled++;
+
+        if (this.amountKilled >= this.totalInvaders)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     //hitting edge, going down
@@ -93,11 +99,11 @@ public class Invaders : MonoBehaviour
         direction.x *= -1f;
 
         Vector3 position = this.transform.position;
-        position.y -= .10f;
+        position.y -= .20f;
         this.transform.position = position;
     }
 
-    private void Missile()
+    private void MissileAttack()
     {
         foreach (Transform invader in this.transform)
         {
@@ -108,7 +114,7 @@ public class Invaders : MonoBehaviour
 
             if (Random.value < (1f / (float) this.amountAlive))
             {
-                Instantiate(this.missilePrefab, this.transform.position, Quaternion.identity);
+                Instantiate(this.missilePrefab, invader.position, Quaternion.identity);
                 break;
             }
         }

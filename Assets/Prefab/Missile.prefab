@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3781002102409019088}
   - component: {fileID: 3781002102409019090}
   - component: {fileID: 3781002102409019101}
-  - component: {fileID: 3781002102409019100}
+  - component: {fileID: 905999200502870761}
   m_Layer: 9
   m_Name: Missile
   m_TagString: Untagged
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.125, y: 0.25}
   m_EdgeRadius: 0
---- !u!114 &3781002102409019100
+--- !u!114 &905999200502870761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
