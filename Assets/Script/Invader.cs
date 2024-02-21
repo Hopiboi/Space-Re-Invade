@@ -20,8 +20,6 @@ public class Invader : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
     }
 
-
-
     void Start()
     {
         InvokeRepeating(nameof(AnimateSprite), this.animationTime, this.animationTime);
